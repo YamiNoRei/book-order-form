@@ -1,0 +1,114 @@
+.the-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 20%;
+    background-color: #f1edf7;
+  }
+  .title{
+    color: #432496;
+    padding: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-style:double;
+    border-color: #ffffff;
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+  }
+  
+  .person-info, .adress-info, .contact {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .btn {
+    margin-top: 20px;
+    background-color: #432496;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #7b17ff;
+  }
+  
+  .input-field {
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  #quantity {
+    text-align: center;
+    border: none;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    width: 2rem;
+  }
+  
+  #quantity::-webkit-inner-spin-button,
+  #quantity::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  
+  .wrapper {
+    border: none;    
+    width: 5rem;
+    height: 25px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .plusminus {
+    width: 30px;
+    height: 25px;
+    background: #d6d1da;
+    border: none;
+    border-radius: 10%;
+    font-size: 14px;
+    font-weight: bold;
+    color:#432496;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .plusminus:hover {
+    background: #d0d0d0;
+  }
+  
+  .num {
+    width: 40%;
+    border: none;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .selected-values {
+    margin-top: 20px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    border-radius: 4px;
+  } 
+
+  #submit{
+    margin-left: 10px;
+  }
