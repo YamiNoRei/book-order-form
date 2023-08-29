@@ -6,12 +6,10 @@
     background-color: #f1edf7;
   }
   .title{
-    color: #432496;
+    color: #a574bb;
     padding: 10px;
     margin-bottom: 30px;
-    text-align: center;
-    border-style:double;
-    border-color: #ffffff;
+    text-align: left;
   }
   
   .radio-group {
@@ -29,12 +27,13 @@
   
   .person-info, .adress-info, .contact {
     display: flex;
-    gap: 20px;
+    gap: 10px;
   }
   
   .btn {
+    display:flex;
     margin-top: 20px;
-    background-color: #432496;
+    background-color: #a574bb;
     color: #ffffff;
     padding: 10px 20px;
     border: none;
@@ -44,7 +43,7 @@
   }
   
   .btn:hover {
-    background-color: #7b17ff;
+    background-color: #a574bb;
   }
   
   .input-field {
@@ -112,3 +111,5 @@
   #submit{
     margin-left: 10px;
   }
+
+  

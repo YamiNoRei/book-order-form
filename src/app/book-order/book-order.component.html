@@ -1,205 +1,209 @@
-<div class="the-form">
-    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">  
-        <h3 class="title">Book Order</h3>  
-        <div class="radio-group">
-            <div *ngFor="let method of gender" class="radio">
-                <label>
-                    <input formControlName="gender" type="radio" name="gender" [value]="method.id" required>
-                    {{method.name}}
-                </label>
+<div class="main-content"> 
+    <!-- <router-outlet> -->
+    <div class="the-form">
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">  
+            <h3 class="title">Submit Book Order</h3>  
+            <div class="radio-group">
+                <div *ngFor="let method of gender" class="radio">
+                    <label>
+                        <input formControlName="gender" type="radio" name="gender" [value]="method.id" required>
+                        {{method.name}}
+                    </label>
+                </div>
+                <div *ngIf="orderForm.get('surname')?.invalid && orderForm.get('surname')?.touched" class="error-text">
+                    <div *ngIf="orderForm.get('surname')?.hasError('required')">This field is required.</div>
+                </div>
             </div>
-            <div *ngIf="orderForm.get('surname')?.invalid && orderForm.get('surname')?.touched" class="error-text">
-                <div *ngIf="orderForm.get('surname')?.hasError('required')">This field is required.</div>
-            </div>
-        </div>
 
-        <div class="person-info">        
-            <div class="form-group">
-                <label for="surname">Surame</label>
-                <input
-                id="surname"
-                class="form-control"
-                type="text"
-                name="surname"
-                formControlName="surname"
-                required
-                [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['surname'].invalid && orderForm.controls['surname'].touched }"
-            />
-            <div *ngIf="orderForm.get('surname')?.invalid && orderForm.get('surname')?.touched" class="error-text">
-                <div *ngIf="orderForm.get('surname')?.hasError('required')">This field is required.</div>
-                <div *ngIf="orderForm.get('surname')?.hasError('minlength')">This field should be at least 3 characters.</div>
-                <div *ngIf="orderForm.get('surname')?.hasError('maxlength')">This field should not exceed 150 characters.</div>
+            <div class="person-info">        
+                <div class="form-group">
+                    <label for="surname">Surame</label>
+                    <input
+                    id="surname"
+                    class="form-control"
+                    type="text"
+                    name="surname"
+                    formControlName="surname"
+                    required
+                    [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['surname'].invalid && orderForm.controls['surname'].touched }"
+                />
+                <div *ngIf="orderForm.get('surname')?.invalid && orderForm.get('surname')?.touched" class="error-text">
+                    <div *ngIf="orderForm.get('surname')?.hasError('required')">This field is required.</div>
+                    <div *ngIf="orderForm.get('surname')?.hasError('minlength')">This field should be at least 3 characters.</div>
+                    <div *ngIf="orderForm.get('surname')?.hasError('maxlength')">This field should not exceed 150 characters.</div>
+                </div>
             </div>
-        </div>
+                
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    formControlName="name"        
+                    required
+                    [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['name'].invalid && orderForm.controls['name'].touched }"
+                    />
+                    <div *ngIf="orderForm.get('name')?.invalid && orderForm.get('name')?.touched" class="error-text">
+                        <div *ngIf="orderForm.get('name')?.hasError('required')">This field is required.</div>
+                        <div *ngIf="orderForm.get('name')?.hasError('minlength')">This field should be at least 3 characters.</div>
+                        <div *ngIf="orderForm.get('name')?.hasError('maxlength')">This field should not exceed 150 characters.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-info">
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input
+                    id="address"
+                    class="form-control"
+                    type="text"
+                    name="address"
+                    formControlName="address"        
+                    required
+                    [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['address'].invalid && orderForm.controls['address'].touched }"
+                    />
+                    <div *ngIf="orderForm.get('address')?.invalid && orderForm.get('address')?.touched" class="error-text">
+                        <div *ngIf="orderForm.get('address')?.hasError('required')">This field is required.</div>
+                        <div *ngIf="orderForm.get('address')?.hasError('minlength')">This field should be at least 3 characters.</div>
+                        <div *ngIf="orderForm.get('address')?.hasError('maxlength')">This field should not exceed 150 characters.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="postalCode">Postal Code</label>
+                    <input
+                    id="postalCode"
+                    class="form-control"
+                    type="text"
+                    name="postalCode"
+                    formControlName="postalCode"        
+                    required
+                    [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['postalCode'].invalid && orderForm.controls['postalCode'].touched }"
+                    />
+                    <div *ngIf="orderForm.get('postalCode')?.invalid && orderForm.get('postalCode')?.touched" class="error-text">
+                        <div *ngIf="orderForm.get('postalCode')?.hasError('required')">This field is required.</div>
+                        <div *ngIf="orderForm.get('postalCode')?.hasError('minlength')">This field should be at least 5 characters.</div>
+                        <div *ngIf="orderForm.get('postalCode')?.hasError('maxlength')">This field should not exceed 5 characters.</div>
+                    </div>
+                </div>            
+            </div>
+
+            <div class="contact">
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input
+                    id="phone"
+                    class="form-control"
+                    type="text"
+                    name="phone"
+                    formControlName="phone"        
+                    required
+                    [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['phone'].invalid && orderForm.controls['phone'].touched }"
+                    />
+                    <div *ngIf="orderForm.get('phone')?.invalid && orderForm.get('phone')?.touched" class="error-text">
+                        <div *ngIf="orderForm.get('phone')?.hasError('required')">This field is required.</div>
+                        <div *ngIf="orderForm.get('phone')?.hasError('minlength')">This field should be at least 10 characters.</div>
+                        <div *ngIf="orderForm.get('phone')?.hasError('maxlength')">This field should not exceed 10 characters.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                    id="email"
+                    class="form-control"
+                    type="text"
+                    name="email"
+                    formControlName="email"        
+                    required
+                    [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['email'].invalid && orderForm.controls['email'].touched }"
+                    />
+                    <div *ngIf="orderForm.get('email')?.invalid && orderForm.get('email')?.touched" class="error-text">
+                        <div *ngIf="orderForm.get('email')?.hasError('required')">This field is required.</div>
+                        <div *ngIf="orderForm.get('email')?.hasError('minlength')">This field should be at least 3 characters.</div>
+                        <div *ngIf="orderForm.get('email')?.hasError('maxlength')">This field should not exceed 70 characters.</div>
+                        <div *ngIf="orderForm.get('email')?.hasError('email')">This field should be formatted like text@mail.com.</div>
+
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select
+                    (change)="onCategorySelect()"
+                    formControlName="category"
+                    name="category"
+                    id="category"
+                    class="form-control" required>
+                        <option [ngValue]="null">Select a category</option>
+                        <option *ngFor="let method of category" [ngValue]="method">
+                            {{ method.name }}
+                        </option>
+                </select>
+                <div *ngIf="orderForm.get('category')?.invalid && orderForm.get('category')?.touched" class="error-text">
+                    <div *ngIf="orderForm.get('category')?.hasError('required')">This field is required.</div>
+                </div>
+            </div>      
+                        
+            <div class="form-group" *ngIf="orderForm.controls['category'].value != null">
+                <label for="subCategory">Available books</label>
+                <select
+                    (change)="onSubCategorySelect()"   
+                    formControlName="subCategory"          
+                    name="subCategory"
+                    id="subCategory"
+                    class="form-control" required>
+                        <option [ngValue]="null">Select a subcategory</option>
+                        <option
+                            *ngFor="let subMethod of selectedSubCategories"
+                            [ngValue]="subMethod">
+                            {{ subMethod.name }}
+                        </option>
+                </select>
+                <div *ngIf="orderForm.get('subCategory')?.invalid && orderForm.get('subCategory')?.touched" class="error-text">
+                    <div *ngIf="orderForm.get('subCategory')?.hasError('required')">This field is required.</div>
+                </div>
+            </div>
+
             
             <div class="form-group">
-                <label for="name">Name</label>
-                <input
-                id="name"
-                class="form-control"
-                type="text"
-                name="name"
-                formControlName="name"        
-                required
-                [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['name'].invalid && orderForm.controls['name'].touched }"
-                />
-                <div *ngIf="orderForm.get('name')?.invalid && orderForm.get('name')?.touched" class="error-text">
-                    <div *ngIf="orderForm.get('name')?.hasError('required')">This field is required.</div>
-                    <div *ngIf="orderForm.get('name')?.hasError('minlength')">This field should be at least 3 characters.</div>
-                    <div *ngIf="orderForm.get('name')?.hasError('maxlength')">This field should not exceed 150 characters.</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="address-info">
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input
-                id="address"
-                class="form-control"
-                type="text"
-                name="address"
-                formControlName="address"        
-                required
-                [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['address'].invalid && orderForm.controls['address'].touched }"
-                />
-                <div *ngIf="orderForm.get('address')?.invalid && orderForm.get('address')?.touched" class="error-text">
-                    <div *ngIf="orderForm.get('address')?.hasError('required')">This field is required.</div>
-                    <div *ngIf="orderForm.get('address')?.hasError('minlength')">This field should be at least 3 characters.</div>
-                    <div *ngIf="orderForm.get('address')?.hasError('maxlength')">This field should not exceed 150 characters.</div>
-                </div>
+                <label for="quantity">Quantity</label>
+                <div class="wrapper">
+                    <button class="plusminus minus" (click)="decreaseQuantity()" [disabled]="!isQuantityActive">-</button>
+                    <input id="quantity" type="number" class="num" value="0"
+                    formControlName="quantity" 
+                    [readonly]="!isQuantityActive"
+                    (input)="onQuantityChange()"/>
+                    <button class="plusminus plus" (click)="increaseQuantity()" [disabled]="!isQuantityActive">+</button>
+                </div>            
             </div>
 
             <div class="form-group">
-                <label for="postalCode">Postal Code</label>
+                <label for="totalAmount">Total Price:</label>
                 <input
-                id="postalCode"
-                class="form-control"
-                type="text"
-                name="postalCode"
-                formControlName="postalCode"        
-                required
-                [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['postalCode'].invalid && orderForm.controls['postalCode'].touched }"
-                />
-                <div *ngIf="orderForm.get('postalCode')?.invalid && orderForm.get('postalCode')?.touched" class="error-text">
-                    <div *ngIf="orderForm.get('postalCode')?.hasError('required')">This field is required.</div>
-                    <div *ngIf="orderForm.get('postalCode')?.hasError('minlength')">This field should be at least 5 characters.</div>
-                    <div *ngIf="orderForm.get('postalCode')?.hasError('maxlength')">This field should not exceed 5 characters.</div>
-                </div>
-            </div>            
-        </div>
-
-        <div class="contact">
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input
-                id="phone"
-                class="form-control"
-                type="text"
-                name="phone"
-                formControlName="phone"        
-                required
-                [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['phone'].invalid && orderForm.controls['phone'].touched }"
-                />
-                <div *ngIf="orderForm.get('phone')?.invalid && orderForm.get('phone')?.touched" class="error-text">
-                    <div *ngIf="orderForm.get('phone')?.hasError('required')">This field is required.</div>
-                    <div *ngIf="orderForm.get('phone')?.hasError('minlength')">This field should be at least 10 characters.</div>
-                    <div *ngIf="orderForm.get('phone')?.hasError('maxlength')">This field should not exceed 10 characters.</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                id="email"
-                class="form-control"
-                type="text"
-                name="email"
-                formControlName="email"        
-                required
-                [ngClass]="{ 'ng-invalid ng-touched': orderForm.controls['email'].invalid && orderForm.controls['email'].touched }"
-                />
-                <div *ngIf="orderForm.get('email')?.invalid && orderForm.get('email')?.touched" class="error-text">
-                    <div *ngIf="orderForm.get('email')?.hasError('required')">This field is required.</div>
-                    <div *ngIf="orderForm.get('email')?.hasError('minlength')">This field should be at least 3 characters.</div>
-                    <div *ngIf="orderForm.get('email')?.hasError('maxlength')">This field should not exceed 70 characters.</div>
-                    <div *ngIf="orderForm.get('email')?.hasError('email')">This field should be formatted like text@mail.com.</div>
-
-                </div>
-                
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="category">Category</label>
-            <select
-                (change)="onCategorySelect()"
-                formControlName="category"
-                name="category"
-                id="category"
-                class="form-control" required>
-                    <option [ngValue]="null">Select a category</option>
-                    <option *ngFor="let method of category" [ngValue]="method">
-                        {{ method.name }}
-                    </option>
-            </select>
-            <div *ngIf="orderForm.get('category')?.invalid && orderForm.get('category')?.touched" class="error-text">
-                <div *ngIf="orderForm.get('category')?.hasError('required')">This field is required.</div>
-            </div>
-        </div>      
-                    
-        <div class="form-group" *ngIf="orderForm.controls['category'].value != null">
-            <label for="subCategory">Available books</label>
-            <select
-                (change)="onSubCategorySelect()"   
-                formControlName="subCategory"          
-                name="subCategory"
-                id="subCategory"
-                class="form-control" required>
-                    <option [ngValue]="null">Select a subcategory</option>
-                    <option
-                        *ngFor="let subMethod of selectedSubCategories"
-                        [ngValue]="subMethod">
-                        {{ subMethod.name }}
-                    </option>
-            </select>
-            <div *ngIf="orderForm.get('subCategory')?.invalid && orderForm.get('subCategory')?.touched" class="error-text">
-                <div *ngIf="orderForm.get('subCategory')?.hasError('required')">This field is required.</div>
-            </div>
-        </div>
-
-        
-        <div class="form-group">
-            <label for="quantity">Quantity</label>
-            <div class="wrapper">
-                <button class="plusminus minus" (click)="decreaseQuantity()" [disabled]="!isQuantityActive">-</button>
-                <input id="quantity" type="number" class="num" value="0"
-                formControlName="quantity" 
-                [disabled]="!isQuantityActive"
-                [readonly]="!isQuantityActive"
-                (input)="onQuantityChange()"/>
-                <button class="plusminus plus" (click)="increaseQuantity()" [disabled]="!isQuantityActive">+</button>
-            </div>            
-        </div>
-
-        <div class="form-group">
-            <label for="totalAmount">Total Price:</label>
-            <input
                 id="totalAmount"
                 class="form-control"
                 id="totalAmount"
                 type="number"
-                [value]="getTotalAmount()"
-                readonly
-            />
-        </div>
+                formControlName="totalAmount"
+                [readonly]="!isQuantityActive || !orderFormSubmitted"
+                />
+            </div>
+            
+            <button class="btn btn-primary" id="submit" [disabled]="!orderForm.valid" type="submit">
+            Submit Order</button>
 
-        <button class="btn btn-primary btn-success m-1" id="submit" [disabled]="!orderForm.valid" (click)="onSubmit()">Submit Order</button>
-
-    </form>
+        </form>
+    </div>
+    <!-- </router-outlet> -->
 </div>
 
-<div class="selected-values" *ngIf="orderFormSubmitted">
+<!-- <div class="selected-values" *ngIf="orderFormSubmitted">
     <h4>Dear {{ getSelectedGenderName() }} {{ orderForm.controls['surname'].value }} {{ orderForm.controls['name'].value }}, your order has been submitted succesfully. Find the details below:</h4>
     <p>Address: {{ orderForm.controls['address'].value }}, {{ orderForm.controls['postalCode'].value }}</p>
     <p>Phone: {{ orderForm.controls['phone'].value }}</p>
@@ -208,5 +212,4 @@
     <p>Selected Books: {{ orderForm.controls['subCategory'].value?.name }}</p>
     <p>Quantity: {{ orderForm.controls['quantity'].value }}</p>
     <p>Total Price: {{ getTotalAmount() }}</p>
-
-  </div>
+</div> -->

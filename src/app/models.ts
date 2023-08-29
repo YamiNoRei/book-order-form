@@ -15,3 +15,17 @@ export interface genderModel{
     name: string;    
 }
 
+export interface bookOrderModel{
+    gender: genderModel;
+    category: categoryModel;
+    subCategory: subCategoryModel;
+    name: string;
+    surname: string;
+    address: string;
+    postalCode: string;
+    email: string;
+    phone: string;
+    quantity: number;
+    totalAmount: number;
+}
+

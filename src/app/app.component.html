@@ -1,1 +1,34 @@
-<app-book-order></app-book-order>
+<mat-toolbar>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+        <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
+    Nav bar attempt #397    
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav appOpenSidebarOnswipe [sideNav] = "sidenav" (sidebarMode)="sidebarMode($event)" #sidenav mode = 'side' [(opened)]="isSidebarOpen">
+            <img
+              class="avatar mat-elevation-z8"
+              src="https://static.vecteezy.com/system/resources/previews/008/147/482/non_2x/modern-bookstore-logo-design-illustration-vector.jpg"
+            />        
+            <h4 class="name">BookStore</h4>
+            <p class="designation">Cute Quote</p>        
+            <mat-divider></mat-divider>
+            
+        <button mat-button class="menu-button" routerLink="/new-order">
+            <mat-icon>note_add</mat-icon>
+            <span>New Order</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/past-orders">
+            <mat-icon>book</mat-icon>
+            <span>Past Orders</span>
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content">
+            <router-outlet>
+            </router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

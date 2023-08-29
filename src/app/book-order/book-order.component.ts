@@ -1,9 +1,8 @@
 import { Component, VERSION } from '@angular/core';
 import { categories, gender, subCategories } from './mock-data';
-import { categoryModel, subCategoryModel } from '../models';
+import { bookOrderModel, categoryModel, subCategoryModel } from '../models';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -21,18 +20,18 @@ export class BookOrderComponent {
   category = categories;
   selectedSubCategories: subCategoryModel[] = [];
   price: number=0;
-  totalAmount: number=0;  
   orderForm: FormGroup;
-  formData: any = {};
   isQuantityActive: boolean = false;
   orderFormSubmitted: boolean = false;
+  orderList: bookOrderModel[] = [];
+
 
   options = {
     autoClose: false,
     keepAfterRouteChange: false
   };
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
     this.orderForm = this.formBuilder.group({
       gender: new FormControl (null, Validators.required),
       surname: new FormControl ('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
@@ -43,13 +42,17 @@ export class BookOrderComponent {
       email: new FormControl ('', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(70)]),
       category: new FormControl (null, Validators.required),
       subCategory: new FormControl (null, Validators.required),
-      quantity: new FormControl (0, [Validators.required, Validators.min(1), Validators.pattern(/^[0-9]+$/)]),
+      quantity: new FormControl ({value: 0, disabled:!this.isQuantityActive}, [Validators.required, Validators.min(1), Validators.pattern(/^[0-9]+$/)]),
+      totalAmount: new FormControl(0,[Validators.required,Validators.min(0)])  
     });
-    console.log(this.orderForm);
   }
 
   name = 'Angular ' + VERSION.major; //?
   value = 0;
+
+  openSnackBar(message:string,action:string){
+    let snackBarRef = this._snackBar.open(message, action,{duration:3000});
+  }
 
   onQuantityChange() {
     if (this.orderForm.get('quantity')?.value < 1) {
@@ -86,14 +89,12 @@ export class BookOrderComponent {
     } else {
       this.price = 0;
     }  
-    this.totalAmount = this.getTotalAmount();
+    this.orderForm.controls['totalAmount'].setValue(this.getTotalAmount());
   }
     
   onCategorySelect() {
     this.isQuantityActive=false;
-    console.log(this.orderForm);
     this.orderForm.controls['subCategory'].setValue(null);
-    console.log(this.orderForm.controls['subCategory']);
     this.getSubCategories();
   }
 
@@ -125,10 +126,12 @@ export class BookOrderComponent {
   onSubmit() {
     const submitButton = document.getElementById('submit');
     if (this.orderForm.valid && submitButton && document.activeElement === submitButton){
+      this.orderList.push(this.orderForm.value);
       this.orderFormSubmitted = true;
-      console.log('Form submitted successfully!');
-      console.log(this.orderForm.value); // print form values
     }
+    if (this.orderFormSubmitted)
+      this.openSnackBar('You have succesfully submitted your Order !','x');
   }
-
 }
+
+
