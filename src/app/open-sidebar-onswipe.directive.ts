@@ -35,9 +35,9 @@ export class OpenSidebarOnSwipeDirective {
     });
   }
 
-  ngAfterViewInit(){
-     this.sidebar.open()
-  }
+  // ngAfterViewInit(){
+  //    this.sidebar.open()
+  // }
 
   ngOnDestroy() {
     this.bpoSubscription.unsubscribe();

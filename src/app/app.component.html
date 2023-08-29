@@ -6,7 +6,7 @@
     Nav bar attempt #397    
 </mat-toolbar>
 
-<mat-sidenav-container>
+<mat-sidenav-container class="full">
     <mat-sidenav appOpenSidebarOnswipe [sideNav] = "sidenav" (sidebarMode)="sidebarMode($event)" #sidenav mode = 'side' [(opened)]="isSidebarOpen">
             <img
               class="avatar mat-elevation-z8"
@@ -25,7 +25,7 @@
             <span>Past Orders</span>
         </button>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content class="full">
         <div class="content">
             <router-outlet>
             </router-outlet>

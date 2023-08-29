@@ -14,23 +14,19 @@ import { MatDividerModule } from '@angular/material/divider';
 import { RouterModule, Routes } from '@angular/router';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
-import { EditDialogComponent } from './dialogs/edit/edit.dialog.component';
-import { PastOrdersComponent } from './past-orders/past-orders.component';
 import { OpenSidebarOnSwipeDirective } from './open-sidebar-onswipe.directive';
-import { PastMockDataService } from './past-mock-data.service';
-
-
+import { PastOrdersComponent } from './past-orders/past-orders.component';
+import { DataService } from './past-orders/data.service';
 
 
 const routes: Routes = [
   { path: '', component: BookOrderComponent }, //empty path before selection
   { path: 'new-order', component: BookOrderComponent },
-  { path: 'past-orders', component: AppComponent }
+  { path: 'past-orders', component: PastOrdersComponent }
 ];
 
 @NgModule({  
@@ -59,14 +55,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     BookOrderComponent,
-    PastOrdersComponent,
-    EditDialogComponent,
-    DeleteDialogComponent,
     OpenSidebarOnSwipeDirective,
+    PastOrdersComponent,
   ],
-  providers: [
-    PastMockDataService
-  ],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 
