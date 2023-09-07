@@ -1,5 +1,4 @@
 <div class="main-content"> 
-    <!-- <router-outlet> -->
     <div class="the-form">
         <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">  
             <h3 class="title">Submit Book Order</h3>  
@@ -169,13 +168,12 @@
                     <div *ngIf="orderForm.get('subCategory')?.hasError('required')">This field is required.</div>
                 </div>
             </div>
-
             
             <div class="form-group">
                 <label for="quantity">Quantity</label>
                 <div class="wrapper">
                     <button class="plusminus minus" (click)="decreaseQuantity()" [disabled]="!isQuantityActive">-</button>
-                    <input id="quantity" type="number" class="num" value="0"
+                    <input id="quantity" type="number" class="num"
                     formControlName="quantity" 
                     [readonly]="!isQuantityActive"
                     (input)="onQuantityChange()"/>
@@ -191,7 +189,7 @@
                 id="totalAmount"
                 type="number"
                 formControlName="totalAmount"
-                [readonly]="!isQuantityActive || !orderFormSubmitted"
+                readonly
                 />
             </div>
             
@@ -200,16 +198,4 @@
 
         </form>
     </div>
-    <!-- </router-outlet> -->
 </div>
-
-<!-- <div class="selected-values" *ngIf="orderFormSubmitted">
-    <h4>Dear {{ getSelectedGenderName() }} {{ orderForm.controls['surname'].value }} {{ orderForm.controls['name'].value }}, your order has been submitted succesfully. Find the details below:</h4>
-    <p>Address: {{ orderForm.controls['address'].value }}, {{ orderForm.controls['postalCode'].value }}</p>
-    <p>Phone: {{ orderForm.controls['phone'].value }}</p>
-    <p>Email: {{ orderForm.controls['email'].value }}</p>
-    <p>Selected Category: {{ orderForm.controls['category'].value?.name }}</p>
-    <p>Selected Books: {{ orderForm.controls['subCategory'].value?.name }}</p>
-    <p>Quantity: {{ orderForm.controls['quantity'].value }}</p>
-    <p>Total Price: {{ getTotalAmount() }}</p>
-</div> -->

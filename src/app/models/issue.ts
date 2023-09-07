@@ -1,20 +1,11 @@
-// export class Issue {
-//   orderId: number;
-//   surname: string;
-//   name: string;
-//   category: string;
-//   subCategory: string; //book title
-//   quantity: number;
-//   totalPrice: number;
-// }
-
+import { categoryModel,subCategoryModel } from "../models";
 
 export interface pastOrdersModel {
   orderId: number;
   surname: string;
   name: string;
-  category: string;
-  subCategory: string; //book title
+  category: categoryModel;
+  subCategory: subCategoryModel;
   quantity: number;
-  totalPrice: number;
+  totalAmount: number;
 }

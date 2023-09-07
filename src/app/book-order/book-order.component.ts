@@ -3,6 +3,8 @@ import { categories, gender, subCategories } from './mock-data';
 import { bookOrderModel, categoryModel, subCategoryModel } from '../models';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar';
+import { OrderService } from '../order.service';
+
 
 
 
@@ -23,7 +25,7 @@ export class BookOrderComponent {
   orderForm: FormGroup;
   isQuantityActive: boolean = false;
   orderFormSubmitted: boolean = false;
-  orderList: bookOrderModel[] = [];
+  //orderList: bookOrderModel[] = [];
 
 
   options = {
@@ -31,7 +33,7 @@ export class BookOrderComponent {
     keepAfterRouteChange: false
   };
 
-  constructor(private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private orderService: OrderService) {
     this.orderForm = this.formBuilder.group({
       gender: new FormControl (null, Validators.required),
       surname: new FormControl ('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
@@ -95,6 +97,7 @@ export class BookOrderComponent {
   onCategorySelect() {
     this.isQuantityActive=false;
     this.orderForm.controls['subCategory'].setValue(null);
+    this.orderForm.controls['totalAmount'].setValue(0);
     this.getSubCategories();
   }
 
@@ -107,14 +110,23 @@ export class BookOrderComponent {
   }
 
   increaseQuantity() {
-    this.orderForm.controls["quantity"].setValue(this.orderForm.controls['quantity'].value+1);
+    this.orderForm.controls['quantity'].patchValue(this.orderForm.controls['quantity'].value+1);
+    this.updateTotalAmount();
     
   }
 
   decreaseQuantity() {
     if (this.orderForm.controls['quantity'].value > 1) {
-      this.orderForm.controls["quantity"].setValue(this.orderForm.controls['quantity'].value-1);
+      this.orderForm.controls['quantity'].patchValue(this.orderForm.controls['quantity'].value-1);
+      this.updateTotalAmount();
     }
+  }
+
+  updateTotalAmount() {
+    const quantity = this.orderForm.controls['quantity'].value;
+    console.log(this.orderForm.controls['quantity']);
+    const price = this.price;
+    this.orderForm.controls['totalAmount'].patchValue(quantity * price);
   }
 
   getSelectedGenderName(): string {
@@ -125,12 +137,14 @@ export class BookOrderComponent {
    
   onSubmit() {
     const submitButton = document.getElementById('submit');
-    if (this.orderForm.valid && submitButton && document.activeElement === submitButton){
-      this.orderList.push(this.orderForm.value);
+    if (this.orderForm.valid && submitButton && document.activeElement === submitButton) {
+      const order = this.orderForm.value;
+      //this.orderList.push(order); // Push to local orderList
+      this.orderService.submitOrder(order); // Submit to OrderService
       this.orderFormSubmitted = true;
+      this.openSnackBar('You have successfully submitted your Order!', 'x');
+      console.log(this.orderForm);
     }
-    if (this.orderFormSubmitted)
-      this.openSnackBar('You have succesfully submitted your Order !','x');
   }
 }
 

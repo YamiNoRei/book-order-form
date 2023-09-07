@@ -16,6 +16,7 @@ export interface genderModel{
 }
 
 export interface bookOrderModel{
+    orderId: number;
     gender: genderModel;
     category: categoryModel;
     subCategory: subCategoryModel;

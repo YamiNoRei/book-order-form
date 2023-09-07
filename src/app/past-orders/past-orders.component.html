@@ -1,73 +1,63 @@
 <div class="example-container mat-elevation-z8">
-<mat-table #table [dataSource]="dataSource">
-<!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+    <mat-table #table [dataSource]="dataSource">
 
- 
+        <ng-container matColumnDef="orderId">
+            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index"> {{ i+1 }} </mat-cell>
+        </ng-container>   
 
-    <!-- orderId Column -->
-<ng-container matColumnDef="orderId">
-<mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-<mat-cell *matCellDef="let element"> {{ element.orderId }} </mat-cell>
-</ng-container>
+        <ng-container matColumnDef="surname">
+            <mat-header-cell *matHeaderCellDef> Surname </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.surname }} </mat-cell>
+        </ng-container>
 
- 
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        </ng-container>
 
-    <!-- surname Column -->
-<ng-container matColumnDef="surname">
-<mat-header-cell *matHeaderCellDef> Surname </mat-header-cell>
-<mat-cell *matCellDef="let element"> {{ element.surname }} </mat-cell>
-</ng-container>
+        <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                    {{ element.category.name }}
+            </mat-cell>
+        </ng-container>
 
- 
+        <ng-container matColumnDef="subCategory">
+            <mat-header-cell *matHeaderCellDef> SubCategory </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                    {{ element.subCategory.name }}
+            </mat-cell>
+        </ng-container>
 
-    <!-- Name Column -->
-<ng-container matColumnDef="name">
-<mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-<mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
-</ng-container>
+        <ng-container matColumnDef="quantity">
+            <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                    {{ element.quantity }}
+            </mat-cell>
+        </ng-container>
 
- 
+        <ng-container matColumnDef="totalAmount">
+            <mat-header-cell *matHeaderCellDef> Total Price </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                    {{ element.totalAmount }}
+            </mat-cell>
+        </ng-container>
 
-    <!-- category Column -->
-<ng-container matColumnDef="category">
-<mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-<mat-cell *matCellDef="let element">
-        {{ element.category }}
-</mat-cell>
-</ng-container>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> CRUD </mat-header-cell>
+            <mat-cell *matCellDef="let element; let i=index;">
+                <button mat-icon-button color="accent" (click)="startEdit(element)">
+                  <mat-icon aria-label="Edit">edit</mat-icon>
+                </button>
+        
+                <button mat-icon-button color="accent" (click)="deleteItem(element)">
+                  <mat-icon aria-label="Delete">delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>          
 
- 
-
-    <!-- SubCategory Column -->
-<ng-container matColumnDef="subCategory">
-<mat-header-cell *matHeaderCellDef> SubCategory </mat-header-cell>
-<mat-cell *matCellDef="let element">
-        {{ element.subCategory }}
-</mat-cell>
-</ng-container>
-
- 
-
-    <ng-container matColumnDef="quantity">
-<mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-<mat-cell *matCellDef="let element">
-        {{ element.quantity }}
-</mat-cell>
-</ng-container>
-
- 
-
-    <ng-container matColumnDef="totalPrice">
-<mat-header-cell *matHeaderCellDef> TotalPrice </mat-header-cell>
-<mat-cell *matCellDef="let element">
-        {{ element.totalPrice }}
-</mat-cell>
-</ng-container>
-
- 
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
 </div>
