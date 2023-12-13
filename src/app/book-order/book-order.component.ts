@@ -17,11 +17,11 @@ styleUrls: ['./book-order.component.css']
 
 export class BookOrderComponent {
 
-  gender=gender;
+  gender = gender;
   subCategory = subCategories;
   category = categories;
   selectedSubCategories: subCategoryModel[] = [];
-  price: number=0;
+  price: number = 0;
   orderForm: FormGroup;
   isQuantityActive: boolean = false;
   orderFormSubmitted: boolean = false;
